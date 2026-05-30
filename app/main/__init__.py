@@ -1,3 +1,5 @@
 from flask import Blueprint
 
 main_bp = Blueprint('main', __name__)
+
+from app.main import routes  # noqa: F401 — registers routes on the blueprint
