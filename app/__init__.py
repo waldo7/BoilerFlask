@@ -26,12 +26,59 @@ def create_app(config_name=None):
         from config import DevelopmentConfig
         app.config.from_object(DevelopmentConfig)
 
+    # Initialize extensions
+    from app.extensions import db, login_manager, csrf, mail
+    from flask_migrate import Migrate
+    from flask_limiter import Limiter
+    from flask_limiter.util import get_remote_address
+
+    db.init_app(app)
+    migrate = Migrate(app, db)
+    login_manager.init_app(app)
+
+    login_manager.login_view = 'auth.login'
+    login_manager.login_message = 'Please log in to continue.'
+    login_manager.login_message_category = 'warning'
+    login_manager.session_protection = 'basic'
+
+    csrf.init_app(app)
+    mail.init_app(app)
+
+    limiter = Limiter(
+        key_func=get_remote_address,
+        default_limits=[app.config['RATELIMIT_DEFAULT']],
+        storage_uri=app.config['RATELIMIT_STORAGE_URI'],
+    )
+    limiter.init_app(app)
+
+    from app.models.user import User
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        user = User.query.get(int(user_id))
+        if user is None:
+            return None
+        if not user.is_active:
+            return None
+        return user
+
     # Register blueprints
     from app.main import main_bp
     app.register_blueprint(main_bp)
 
+    from app.auth import auth_bp
+    app.register_blueprint(auth_bp)
+
     # Register error handlers (shared error template pattern per D-12)
     register_error_handlers(app)
+
+    # Dev database bootstrap — create tables if missing
+    if not app.config.get('TESTING') and app.config.get('DEBUG'):
+        with app.app_context():
+            from sqlalchemy import inspect
+            inspector = inspect(db.engine)
+            if not inspector.has_table('users'):
+                db.create_all()
 
     return app
 
