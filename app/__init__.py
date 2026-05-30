@@ -69,6 +69,9 @@ def create_app(config_name=None):
     from app.auth import auth_bp
     app.register_blueprint(auth_bp)
 
+    from app.auth.oauth import init_oauth
+    init_oauth(app)
+
     # Register error handlers (shared error template pattern per D-12)
     register_error_handlers(app)
 
