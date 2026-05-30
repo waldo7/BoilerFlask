@@ -77,6 +77,10 @@ def create_app(config_name=None):
         flash(f"Too many attempts. Please try again later.", 'warning')
         return redirect(request.url)
 
+    # Register CLI commands
+    from app.commands import register_commands
+    register_commands(app)
+
     # Dev database bootstrap — create tables if missing
     if not app.config.get('TESTING') and app.config.get('DEBUG'):
         with app.app_context():
