@@ -149,6 +149,19 @@
 .auth-container .input-group .btn-outline-secondary {
     border-left: none;
     background: white;
+    border-color: #dee2e6;
+    color: #6c757d;
+}
+
+.auth-container .input-group .btn-outline-secondary:hover {
+    background-color: #f8f9fa;
+    border-color: #dee2e6;
+    color: #212529;
+}
+
+.auth-container .input-group .btn-outline-secondary:focus {
+    box-shadow: none;
+    border-color: #dee2e6;
 }
 
 .auth-container .alert {
