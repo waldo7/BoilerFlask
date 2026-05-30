@@ -80,9 +80,9 @@ notes: All 30 automated tests in the test suite pass with zero failures.
 ## Summary
 
 total: 10
-passed: 10
+passed: 0
 issues: 0
-pending: 0
+pending: 10
 skipped: 0
 
 ## Gaps
