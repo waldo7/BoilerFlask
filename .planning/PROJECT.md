@@ -67,6 +67,7 @@ Developers get a production-ready, organized Flask foundation with auth and resp
 | Bootstrap offcanvas for mobile sidebar | Native component, no JS framework needed | — Pending |
 | SQLite for prototype, Postgres/MySQL for prod | Zero-config start, config-only migration path | — Pending |
 | No Flask-Security — build auth manually | Keeps internals visible and extensible | — Pending |
+| OAuth via Flask-Dance when needed (v2) | Bolts onto existing Flask-Login session; no rewrite | — Pending |
 
 ## Evolution
 
