@@ -848,22 +848,25 @@ def create_app():
 | A3 | `flask-sqlalchemy`, `flask-login`, `flask-wtf`, `flask-mail` will be available when Phase 2 needs them | Component Specifications | LOW — these are well-maintained packages with stable PyPI presence; extensions.py uses try/except ImportError guard so Phase 1 doesn't break if they're missing |
 | A4 | The integrity hash `sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI` is correct for bootstrap.bundle.min.js 5.3.8 | Template Architecture | LOW — copied verbatim from official Bootstrap 5.3.8 docs page; browser will refuse to load if hash mismatches, which is a safe failure mode |
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Favicon inclusion**
    - What we know: D-06 says user can decide; CONTEXT.md marks it as agent's discretion
    - What's unclear: Whether to include a favicon link in `<head>` or skip entirely
    - Recommendation: Include a minimal favicon link pointing to a Bootstrap icon SVG as favicon, or omit (no favicon means no 404 noise during dev)
+   - **RESOLVED: Omit favicon entirely — no favicon link in base.html or error.html. Avoids 404 noise during dev and defers the decision to a later phase.**
 
 2. **extensions.py — stub or guard?**
    - What we know: Phase 1 doesn't install sqlalchemy, login, wtf, or mail. Creating `extensions.py` with bare imports will crash on app start.
    - What's unclear: Whether to use `try/except ImportError` guards or create as a comment-only placeholder
    - Recommendation: Use try/except ImportError with `pass` for each extension, and a module docstring explaining Phase 2 wiring. The planner should decide based on whether `app/__init__.py` imports from `extensions.py` in Phase 1 (it should not — factory defers extension init to Phase 2).
+   - **RESOLVED: Use `try/except ImportError` guards for all four extensions (SQLAlchemy, LoginManager, CSRFProtect, Mail). On import failure, set instance to `None`. create_app() does NOT import from extensions.py in Phase 1.**
 
 3. **About/Contact placeholder routes**
    - What we know: Sidebar needs multiple links to test `.active` class detection. Dashboard and Settings both link to `main.index` — but with two links both pointing to the same route, the `.active` detection works but the distinguishment is limited.
    - What's unclear: Whether to create `/about` and `/contact` as genuine placeholder routes (extends base.html, simple content) or skip them
    - Recommendation: Create both — minimal effort (one route + one template each), and they provide testable endpoints for sidebar navigation behavior.
+   - **RESOLVED: Create both `/about` and `/contact` as placeholder routes with minimal templates extending base.html. Provides distinct endpoints for sidebar `.active` class detection and navigation testing.**
 
 ## Metadata
 
