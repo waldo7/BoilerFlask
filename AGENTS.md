@@ -8,18 +8,27 @@
 
 ## Commands
 ```bash
-# Start dev server
-python run.py
+# Start dev server (Windows PowerShell)
+.\venv\Scripts\python run.py
 
-# Install dependencies
-pip install -r requirements.txt
+# Start dev server (Bash / WSL)
+./venv/bin/python run.py
+
+# Install dependencies (Windows PowerShell)
+.\venv\Scripts\pip install -r requirements.txt
+
+# Install dependencies (Bash / WSL)
+./venv/bin/pip install -r requirements.txt
+
+# Run tests (from Windows PowerShell via WSL)
+wsl ./venv/bin/python -m pytest
 ```
 
 ## Core Value
 Developers get a production-ready, organized Flask foundation with auth and responsive UI out of the box.
 
 ## Active Phase
-○ None — project just initialized. Run `/gsd-plan-phase 1` to begin.
+◆ Phase 3: Dashboard & Sidebar — Active (planning phase)
 
 ## Key Architecture Rules
 - App factory pattern: `create_app()` in `app/__init__.py`
