@@ -23,6 +23,10 @@ class Config:
     REMEMBER_COOKIE_DURATION = 2592000
     RATELIMIT_DEFAULT = '10 per minute'
     RATELIMIT_STORAGE_URI = 'memory://'
+    GOOGLE_OAUTH_CLIENT_ID = os.environ.get('GOOGLE_OAUTH_CLIENT_ID')
+    GOOGLE_OAUTH_CLIENT_SECRET = os.environ.get('GOOGLE_OAUTH_CLIENT_SECRET')
+    GITHUB_OAUTH_CLIENT_ID = os.environ.get('GITHUB_OAUTH_CLIENT_ID')
+    GITHUB_OAUTH_CLIENT_SECRET = os.environ.get('GITHUB_OAUTH_CLIENT_SECRET')
 
 
 class DevelopmentConfig(Config):
