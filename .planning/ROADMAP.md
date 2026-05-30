@@ -90,6 +90,16 @@ Plans:
 
 **UI hint:** yes
 
+### Phase 5: Add OAuth
+
+**Goal:** [To be planned]
+**Requirements**: TBD
+**Depends on:** Phase 4
+**Plans:** 0 plans
+Plans:
+
+- [ ] TBD (run /gsd-plan-phase 5 to break down)
+
 ---
 
 ### Phase 4: Code Review Refactoring

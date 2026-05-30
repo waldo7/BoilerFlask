@@ -1,24 +1,34 @@
 {
   "version": "1.0",
-  "timestamp": "2026-05-30T17:03:00Z",
-  "phase": "02",
-  "phase_name": "auth-system",
-  "phase_dir": ".planning/phases/02-auth-system",
-  "plan": null,
-  "task": null,
-  "total_tasks": null,
-  "status": "verified",
+  "timestamp": "2026-05-30T10:43:50Z",
+  "phase": "05",
+  "phase_name": "add-oauth",
+  "phase_dir": ".planning/phases/05-add-oauth",
+  "plan": 1,
+  "task": 0,
+  "total_tasks": 6,
+  "status": "paused",
   "completed_tasks": [],
-  "remaining_tasks": [],
+  "remaining_tasks": [
+    {"id": 1, "name": "01-dependencies", "status": "not_started"},
+    {"id": 2, "name": "02-configuration", "status": "not_started"},
+    {"id": 3, "name": "03-database-models", "status": "not_started"},
+    {"id": 4, "name": "04-oauth-logic", "status": "not_started"},
+    {"id": 5, "name": "05-templates-auth", "status": "not_started"},
+    {"id": 6, "name": "06-settings-password", "status": "not_started"}
+  ],
   "blockers": [],
   "human_actions_pending": [],
   "decisions": [
-    {"decision": "Fixed auth/base.html Bootstrap CSS CDN by adding missing crossorigin=anonymous attribute", "rationale": "Without crossorigin=anonymous, browsers block stylesheets using SRI, leaving pages completely unstyled (scaffold bug)", "phase": "02"},
-    {"decision": "Styled sidebars with Slate-900 SaaS background and user profile footer cards", "rationale": "Meets premium aesthetic standards and provides dynamic initials-avatar and logout actions natively in sidebar", "phase": "02"},
-    {"decision": "Decoupled public pages into a dedicated marketing_base.html layout with a top navbar", "rationale": "Public views (Home, About, Contact) must not show the logged-in user sidebar to anonymous visitors", "phase": "02"},
-    {"decision": "Added a global flash message container inside base.html's main content column", "rationale": "Prevents flashed notifications from getting trapped in the session cookie and leaking on logout", "phase": "02"}
+    {"decision": "Allow nullable passwords", "rationale": "For OAuth-only users without local passwords", "phase": "05"},
+    {"decision": "Account auto-linking", "rationale": "Best UX to link Google/Github accounts if email matches existing", "phase": "05"}
   ],
-  "uncommitted_files": [],
-  "next_action": "Execute /gsd-ship to finalize Phase 2 branch, then run /gsd-plan-phase 3 to begin planning Phase 3 (Dashboard & Sidebar).",
-  "context_notes": "Phase 2 auth system is 100% complete, visually styled, and fully verified by the user. All 10/10 manual and automated UAT tests successfully passed. Pytest suite passes 30/30 cleanly. Dev server cleanly shut down."
+  "uncommitted_files": [
+    ".planning/phases/05-add-oauth/05-RESEARCH.md",
+    ".planning/phases/05-add-oauth/05-01-PLAN.md",
+    ".planning/STATE.md",
+    ".planning/ROADMAP.md"
+  ],
+  "next_action": "Run /gsd-execute-phase 5 to begin execution",
+  "context_notes": "Planning is fully complete for Phase 05. Pausing right before execution begins."
 }
