@@ -92,13 +92,15 @@ Plans:
 
 ### Phase 5: Add OAuth
 
-**Goal:** [To be planned]
-**Requirements**: TBD
-**Depends on:** Phase 4
-**Plans:** 0 plans
+**Goal:** OAuth authentication via Google and GitHub providers alongside existing email/password system.
+
+**Requirements:** AUTH-08
+
+**Plans:** 1/1 plan complete
+
 Plans:
 
-- [ ] TBD (run /gsd-plan-phase 5 to break down)
+- [x] 05-01-PLAN.md — Flask-Dance integration: dependencies, config, OAuth model, blueprints, templates, SetPasswordForm
 
 ---
 
