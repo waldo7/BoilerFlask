@@ -1,0 +1,10 @@
+{% extends "auth/base.html" %}
+{% block title %}Check Your Email — FlaskStuct{% endblock %}
+
+{% block auth_content %}
+<h4 class="card-title"><i class="bi bi-envelope-check"></i> Check Your Email</h4>
+
+<p>If that email address is registered, we've sent a link to reset your password. The link expires in 1 hour.</p>
+
+<a href="{{ url_for('auth.login') }}" class="btn btn-outline-primary w-100">Back to Log In</a>
+{% endblock %}

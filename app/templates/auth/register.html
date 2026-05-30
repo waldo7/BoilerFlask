@@ -1,0 +1,67 @@
+{% extends "auth/base.html" %}
+{% block title %}Create Account — FlaskStuct{% endblock %}
+
+{% block auth_content %}
+<h4 class="card-title">Create Account</h4>
+
+{% if form.errors %}
+<div class="alert alert-danger alert-dismissible fade show">
+    Please fix the errors below.
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+{% endif %}
+
+<form method="POST" action="{{ url_for('auth.register') }}" novalidate>
+    {{ form.hidden_tag() }}
+
+    <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input type="email" name="email" id="email"
+               class="form-control {% if form.email.errors %}is-invalid{% endif %}"
+               placeholder="you@example.com"
+               value="{{ form.email.data or '' }}">
+        {% if form.email.errors %}
+        <div class="invalid-feedback d-block">{{ form.email.errors[0] }}</div>
+        {% endif %}
+    </div>
+
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <div class="input-group">
+            <input type="password" name="password" id="password"
+                   class="form-control {% if form.password.errors %}is-invalid{% endif %}">
+            <button class="btn btn-outline-secondary" type="button"
+                    data-bs-toggle="tooltip" title="Show password"
+                    onclick="var p=document.getElementById('password');var i=this.querySelector('i');if(p.type==='password'){p.type='text';i.className='bi bi-eye-slash';}else{p.type='password';i.className='bi bi-eye';}">
+                <i class="bi bi-eye"></i>
+            </button>
+        </div>
+        <div class="form-text">Must be at least 8 characters with 2 of: uppercase, lowercase, digit, or symbol</div>
+        {% if form.password.errors %}
+        <div class="invalid-feedback d-block">{{ form.password.errors[0] }}</div>
+        {% endif %}
+    </div>
+
+    <div class="mb-3">
+        <label for="confirm_password" class="form-label">Confirm password</label>
+        <div class="input-group">
+            <input type="password" name="confirm_password" id="confirm_password"
+                   class="form-control {% if form.confirm_password.errors %}is-invalid{% endif %}">
+            <button class="btn btn-outline-secondary" type="button"
+                    data-bs-toggle="tooltip" title="Show password"
+                    onclick="var p=document.getElementById('confirm_password');var i=this.querySelector('i');if(p.type==='password'){p.type='text';i.className='bi bi-eye-slash';}else{p.type='password';i.className='bi bi-eye';}">
+                <i class="bi bi-eye"></i>
+            </button>
+        </div>
+        {% if form.confirm_password.errors %}
+        <div class="invalid-feedback d-block">{{ form.confirm_password.errors[0] }}</div>
+        {% endif %}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Account</button>
+</form>
+
+<div class="form-text-crosslink">
+    <a href="{{ url_for('auth.login') }}" class="text-decoration-none">Already have an account? Log in</a>
+</div>
+{% endblock %}
