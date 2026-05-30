@@ -4,7 +4,7 @@ from flask_login import current_user, login_required, logout_user
 from app.extensions import db
 from app.main import main_bp
 from app.models.user import Role, User
-from app.auth.forms import ChangePasswordForm
+from app.auth.forms import ChangePasswordForm, SetPasswordForm
 
 
 @main_bp.route('/')
@@ -65,8 +65,9 @@ def dashboard():
 @main_bp.route('/settings', methods=['GET', 'POST'])
 @login_required
 def settings():
-    form = ChangePasswordForm()
-    
+    has_password = current_user.password_hash is not None
+    form = ChangePasswordForm() if has_password else SetPasswordForm()
+
     sys_config = None
     if current_user.role.value in ['admin', 'superuser']:
         try:
@@ -81,15 +82,19 @@ def settings():
             current_app.logger.error(f"Error in settings sys_config: {e}")
 
     if form.validate_on_submit():
-        if not current_user.check_password(form.current_password.data):
-            form.current_password.errors.append('Incorrect current password.')
-            return render_template('settings.html', active_page='settings', form=form, sys_config=sys_config)
-            
-        current_user.set_password(form.new_password.data)
+        if has_password:
+            if not current_user.check_password(form.current_password.data):
+                form.current_password.errors.append('Incorrect current password.')
+                return render_template('settings.html', active_page='settings', form=form, sys_config=sys_config)
+
+            current_user.set_password(form.new_password.data)
+        else:
+            current_user.set_password(form.password.data)
+
         db.session.commit()
-        
+
         logout_user()
         flash('Your password has been changed successfully. For security reasons, all active sessions have been terminated. Please log in again.', 'success')
         return redirect(url_for('auth.login'))
-        
+
     return render_template('settings.html', active_page='settings', form=form, sys_config=sys_config)

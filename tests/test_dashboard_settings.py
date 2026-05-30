@@ -49,3 +49,31 @@ def test_settings_change_password(auth_client):
     }, follow_redirects=True)
     assert b'Your password has been changed successfully' in response.data
     assert b'Log In' in response.data
+
+
+def test_settings_oauth_user_set_password(app, client):
+    """AUTH-08: OAuth-only user (null password) sees Set Password, not Change Password."""
+    from app.extensions import db
+    from app.models.user import Role, User
+
+    with app.app_context():
+        oauth_user = User(email='oauth@example.com', role=Role.USER)
+        db.session.add(oauth_user)
+        db.session.commit()
+        user_id = oauth_user.id
+
+    with app.test_client() as c:
+        with c.session_transaction() as sess:
+            sess['_user_id'] = str(user_id)
+            sess['_fresh'] = True
+
+        response = c.get('/settings')
+        assert response.status_code == 200
+        assert b'Set Password' in response.data
+        assert b'Change Password' not in response.data
+
+        response = c.post('/settings', data={
+            'password': 'NewOauthPass1!',
+            'confirm_password': 'NewOauthPass1!'
+        }, follow_redirects=True)
+        assert b'Your password has been changed successfully' in response.data
