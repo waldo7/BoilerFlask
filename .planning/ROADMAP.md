@@ -17,15 +17,15 @@ Plans:
 - [x] 01-01-PLAN.md — Project config, requirements, .gitignore, config.py classes, pytest test scaffold
 - [x] 01-02-PLAN.md — App factory (create_app), extensions.py placeholder, app.css custom styles
 - [x] 01-03-PLAN.md — Jinja templates: base.html (Bootstrap+sidebar), home.html, error.html, about.html, contact.html
-- [ ] 01-04-PLAN.md — Blueprints (main + auth), route handlers, run.py entry point
+- [x] 01-04-PLAN.md — Blueprints (main + auth), route handlers, run.py entry point
 
 **Success Criteria:**
-1. `python run.py` starts Flask without errors
-2. Visiting `/` displays homepage with "Flask app is running" placeholder
-3. `base.html` renders Bootstrap 5 layout with responsive navbar
-4. Sidebar collapses to hamburger on mobile viewports (< 768px)
-5. Error pages (404, 500) render with consistent styling
-6. Login/register forms render full-width and touch-friendly
+1. [x] `python run.py` starts Flask without errors
+2. [x] Visiting `/` displays homepage with "Flask app is running" placeholder
+3. [x] `base.html` renders Bootstrap 5 layout with responsive navbar
+4. [x] Sidebar collapses to hamburger on mobile viewports (< 768px)
+5. [x] Error pages (404, 500) render with consistent styling
+6. [x] Login/register forms render full-width and touch-friendly (structural responsiveness)
 
 **UI hint:** yes
 
@@ -45,6 +45,15 @@ Plans:
 6. Unauthenticated users are redirected to login when accessing protected pages
 
 **UI hint:** yes
+
+**Plans:** 5 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Install auth packages, add config keys, create User model with Role enum
+- [ ] 02-02-PLAN.md — Wire extensions in create_app(), register auth_bp, add auth CSS, import routes
+- [ ] 02-03-PLAN.md — Create auth forms (4 WTForms classes) and auth templates (6 Jinja files)
+- [ ] 02-04-PLAN.md — Auth routes (8 handlers), dashboard stub, Flask CLI admin commands
+- [ ] 02-05-PLAN.md — Comprehensive test suite (25+ tests, conftest DB/auth fixtures)
 
 ---
 
