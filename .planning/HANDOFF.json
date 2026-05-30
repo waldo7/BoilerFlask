@@ -1,32 +1,23 @@
 {
   "version": "1.0",
-  "timestamp": "2026-05-30T05:19:26Z",
-  "phase": 2,
-  "phase_name": "Auth System",
-  "phase_dir": ".planning/phases/02-auth-system/",
+  "timestamp": "2026-05-30T07:19:27Z",
+  "phase": "02",
+  "phase_name": "auth-system",
+  "phase_dir": ".planning/phases/02-auth-system",
   "plan": null,
   "task": null,
   "total_tasks": null,
-  "status": "paused",
-  "completed_tasks": [
-    {"id": "research", "name": "Phase 2 Research — gsd-phase-researcher", "status": "done", "commit": "gitignored"},
-    {"id": "validation", "name": "Validation Strategy from RESEARCH.md", "status": "done", "commit": "gitignored"}
+  "status": "uat",
+  "completed_tasks": [],
+  "remaining_tasks": [],
+  "blockers": [],
+  "human_actions_pending": [
+    {"action": "Continue UAT testing from test 2 (Registration Flow)", "context": "Server is running at http://localhost:5000. User needs to interactively verify features.", "blocking": true}
   ],
-  "remaining_tasks": [
-    {"id": "ui-spec", "name": "Generate UI-SPEC.md via /gsd-ui-phase 2", "status": "not_started"},
-    {"id": "plan", "name": "Spawn gsd-planner for PLAN.md files", "status": "not_started"},
-    {"id": "verify", "name": "Run gsd-plan-checker verification loop", "status": "not_started"}
-  ],
-  "blockers": [
-    {"description": "UI-SPEC.md missing — UI safety gate blocked plan-phase. Phase 2 has UI content (auth forms, standalone template shell, responsive mobile). Need UI design contract before planning.", "type": "workflow_gate", "workaround": "Run /gsd-ui-phase 2 to generate UI-SPEC.md, or use /gsd-plan-phase 2 --skip-ui to bypass (not recommended)"}
-  ],
-  "human_actions_pending": [],
   "decisions": [
-    {"decision": "Phase 2 research spawned gsd-phase-researcher — produced comprehensive RESEARCH.md covering 7 packages, integration points, pitfall mitigations, and validation architecture", "rationale": "Research-first recommendation selected by user", "phase": 2},
-    {"decision": "Validation strategy created from RESEARCH.md — 19 automated test cases mapped to AUTH-01 through AUTH-05 requirements, per-task verification map, Wave 0 gaps identified", "rationale": "nyquist_validation enabled in config.json", "phase": 2},
-    {"decision": "Plan-phase exited at UI Design Contract Gate — Phase 2 ROADMAP has 'UI hint: yes' and no UI-SPEC.md exists", "rationale": "ui_safety_gate=true in config; AUTO_CHAIN=false (manual invocation)", "phase": 2}
+    {"decision": "Fixed config.py DB URI from sqlite:///instance/app.db to sqlite:///app.db", "rationale": "Flask-SQLAlchemy 3.x prepends instance_path to relative DB paths, causing doubled instance/instance/ path", "phase": "02"}
   ],
-  "uncommitted_files": [".planning/ROADMAP.md", ".planning/STATE.md", ".planning/phases/01-project-skeleton/01-03-PLAN.md", "app/static/css/app.css", "app/templates/base.html"],
-  "next_action": "Run /gsd-ui-phase 2 to generate the UI design contract, then re-run /gsd-plan-phase 2 to continue planning",
-  "context_notes": "Phase 2 planning was proceeding normally: research completed (7 packages verified, all integration points documented), validation strategy created (19 test cases). Hit the UI safety gate at step 5.6 — Phase 2 has frontend indicators (auth templates, forms, responsive mobile). The CONTEXT.md has 33 locked decisions covering auth layout, password reset flow, role assignment, session behavior, redirects, password policy, user model, email handling, rate limiting, and DB migrations. All decisions are researched — planner has everything needed once UI-SPEC is generated."
+  "uncommitted_files": ["config.py", ".planning/phases/02-auth-system/02-UAT.md"],
+  "next_action": "Present UAT test 2 (Registration Flow) - user needs to verify registration form at /auth/register",
+  "context_notes": "Phase 2 auth system is fully built and running. UAT verification in progress - test 1 (cold start) passed after fixing config.py DB URI bug. Server is running at localhost:5000 and serving pages. 9 remaining UAT tests to verify."
 }
