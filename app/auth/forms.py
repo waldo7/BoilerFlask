@@ -38,10 +38,10 @@ class RegistrationForm(FlaskForm):
         count = sum(bool(re.search(p, password)) for p in [
             r'[A-Z]', r'[a-z]', r'[0-9]', r'[^A-Za-z0-9]'
         ])
-        if count < 2:
+        if count < 4:
             raise ValidationError(
-                'Password must contain at least 2 of: uppercase letter, '
-                'lowercase letter, digit, or symbol.'
+                'Password must contain all of: uppercase letter, '
+                'lowercase letter, digit, and symbol.'
             )
 
 
@@ -64,8 +64,8 @@ class ResetPasswordForm(FlaskForm):
         count = sum(bool(re.search(p, password)) for p in [
             r'[A-Z]', r'[a-z]', r'[0-9]', r'[^A-Za-z0-9]'
         ])
-        if count < 2:
+        if count < 4:
             raise ValidationError(
-                'Password must contain at least 2 of: uppercase letter, '
-                'lowercase letter, digit, or symbol.'
+                'Password must contain all of: uppercase letter, '
+                'lowercase letter, digit, and symbol.'
             )

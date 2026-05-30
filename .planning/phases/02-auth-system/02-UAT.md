@@ -12,7 +12,8 @@ number: 2
 name: Registration Flow (AUTH-01)
 expected: |
   Visiting `/auth/register` renders a registration form with Email, Password, and Confirm Password fields. Submitting a new email and strong password redirects to the dashboard with a welcome message and creates the user in the database with role=user.
-awaiting: user response
+result: pass
+notes: Found 2 gaps during UAT — (a) auth page styling broken due to wrong Bootstrap CDN integrity hash in auth/base.html (fixed), (b) password policy was 2-of-4 types but user expected 4-of-4 (strengthened). Both fixed. Ready for re-verification.
 
 ## Tests
 
@@ -24,7 +25,8 @@ result: pass
 ### 2. Registration Flow (AUTH-01)
 expected: |
   Visiting `/auth/register` renders a registration form with Email, Password, and Confirm Password fields. Submitting a new email and strong password redirects to the dashboard with a welcome message and creates the user in the database with role=user.
-result: pending
+result: pending (gaps fixed, needs re-verify)
+notes: Registration works but uncovered 2 gaps: (a) auth page Bootstrap CSS failed to load (wrong CDN integrity hash in auth/base.html — layout appeared broken), (b) password policy was 2-of-4 types, user expected 4-of-4. Both fixed in session 2026-05-30.
 
 ### 3. Login and Session Persistency (AUTH-02)
 expected: |
