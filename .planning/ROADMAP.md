@@ -36,6 +36,15 @@ Plans:
 
 **Requirements:** AUTH-01, AUTH-02, AUTH-03, AUTH-04, AUTH-05
 
+**Plans:** 5 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Foundation: packages, config keys, User model with Role enum
+- [ ] 02-02-PLAN.md — Wiring: create_app() extension wiring, auth_bp registration, auth CSS
+- [ ] 02-03-PLAN.md — UI: 4 WTForms classes + 6 Jinja auth templates
+- [ ] 02-04-PLAN.md — Logic: auth routes (8 handlers), dashboard stub, Flask CLI commands
+- [ ] 02-05-PLAN.md — Tests: test_auth.py (25+ tests), conftest fixtures
+
 **Success Criteria:**
 1. User can register with email and password via `/auth/register`
 2. Registered user can login at `/auth/login` and session persists
