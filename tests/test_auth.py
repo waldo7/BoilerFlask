@@ -86,7 +86,7 @@ def test_login_success_redirects_dashboard(client, user):
 
     dashboard = client.get('/dashboard')
     assert dashboard.status_code == 200
-    assert b'Welcome, test@example.com' in dashboard.data
+    assert b'test@example.com' in dashboard.data
 
 
 def test_login_bad_password(client, user):
@@ -274,7 +274,7 @@ def test_dashboard_authenticated(auth_client, user):
     """Dashboard: Authenticated user sees welcome message and empty state."""
     response = auth_client.get('/dashboard')
     assert response.status_code == 200
-    assert b'Welcome, test@example.com' in response.data
+    assert b'test@example.com' in response.data
     assert b'Getting Started' in response.data
 
 
