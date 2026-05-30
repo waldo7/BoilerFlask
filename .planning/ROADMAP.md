@@ -36,14 +36,14 @@ Plans:
 
 **Requirements:** AUTH-01, AUTH-02, AUTH-03, AUTH-04, AUTH-05
 
-**Plans:** 4/5 plans executed
+**Plans:** 5/5 plans complete
 
 Plans:
 - [x] 02-01-PLAN.md — Foundation: packages, config keys, User model with Role enum
 - [x] 02-02-PLAN.md — Wiring: create_app() extension wiring, auth_bp registration, auth CSS
 - [x] 02-03-PLAN.md — UI: 4 WTForms classes + 6 Jinja auth templates
 - [x] 02-04-PLAN.md — Logic: auth routes (8 handlers), dashboard stub, Flask CLI commands
-- [ ] 02-05-PLAN.md — Tests: test_auth.py (25+ tests), conftest fixtures
+- [x] 02-05-PLAN.md — Tests: test_auth.py (25+ tests), conftest fixtures
 
 **Success Criteria:**
 1. User can register with email and password via `/auth/register`
@@ -61,7 +61,7 @@ Plans:
 - [x] 02-01-PLAN.md — Install auth packages, add config keys, create User model with Role enum
 - [x] 02-02-PLAN.md — Wire extensions in create_app(), register auth_bp, add auth CSS, import routes
 - [x] 02-03-PLAN.md — Create auth forms (4 WTForms classes) and auth templates (6 Jinja files)
-- [ ] 02-04-PLAN.md — Auth routes (8 handlers), dashboard stub, Flask CLI admin commands
+- [x] 02-04-PLAN.md — Auth routes (8 handlers), dashboard stub, Flask CLI admin commands
 - [ ] 02-05-PLAN.md — Comprehensive test suite (25+ tests, conftest DB/auth fixtures)
 
 ---
