@@ -1,25 +1,24 @@
 {
   "version": "1.0",
-  "timestamp": "2026-05-30T08:05:10Z",
+  "timestamp": "2026-05-30T17:03:00Z",
   "phase": "02",
   "phase_name": "auth-system",
   "phase_dir": ".planning/phases/02-auth-system",
   "plan": null,
   "task": null,
   "total_tasks": null,
-  "status": "uat",
+  "status": "verified",
   "completed_tasks": [],
   "remaining_tasks": [],
   "blockers": [],
-  "human_actions_pending": [
-    {"action": "Re-verify UAT test 2 (Registration Flow) after fixes, then proceed to test 3 (Login Flow)", "context": "Two gaps found and fixed during test 2: (1) auth page layout broken due to wrong Bootstrap CDN integrity hash in auth/base.html (layouts now load correctly), (2) password policy strengthened from 2-of-4 types to 4-of-4 (uppercase+lowercase+digit+symbol required). User saw register page but design was broken; fixes applied but not re-verified yet. Server running at http://localhost:5000.", "blocking": true}
-  ],
+  "human_actions_pending": [],
   "decisions": [
-    {"decision": "Fixed config.py DB URI from sqlite:///instance/app.db to sqlite:///app.db", "rationale": "Flask-SQLAlchemy 3.x prepends instance_path to relative DB paths, causing doubled instance/instance/ path", "phase": "02"},
-    {"decision": "Fixed auth/base.html Bootstrap CDN integrity hashes (CSS+JS) to match actual cdn.jsdelivr.net content", "rationale": "Wrong integrity hashes caused browser to refuse loading Bootstrap CSS, making auth pages appear unstyled/broken", "phase": "02"},
-    {"decision": "Strengthened password policy from 2-of-4 to 4-of-4 character types", "rationale": "User expected all 4 types (uppercase, lowercase, digit, symbol) rather than only 2-of-4", "phase": "02"}
+    {"decision": "Fixed auth/base.html Bootstrap CSS CDN by adding missing crossorigin=anonymous attribute", "rationale": "Without crossorigin=anonymous, browsers block stylesheets using SRI, leaving pages completely unstyled (scaffold bug)", "phase": "02"},
+    {"decision": "Styled sidebars with Slate-900 SaaS background and user profile footer cards", "rationale": "Meets premium aesthetic standards and provides dynamic initials-avatar and logout actions natively in sidebar", "phase": "02"},
+    {"decision": "Decoupled public pages into a dedicated marketing_base.html layout with a top navbar", "rationale": "Public views (Home, About, Contact) must not show the logged-in user sidebar to anonymous visitors", "phase": "02"},
+    {"decision": "Added a global flash message container inside base.html's main content column", "rationale": "Prevents flashed notifications from getting trapped in the session cookie and leaking on logout", "phase": "02"}
   ],
-  "uncommitted_files": ["app/auth/forms.py", "app/commands.py", "app/templates/auth/base.html", "app/templates/auth/register.html", "app/templates/auth/reset_password.html", "app/templates/base.html", ".planning/phases/02-auth-system/02-UAT.md", ".planning/phases/01-project-skeleton/01-03-PLAN.md", ".planning/phases/02-auth-system/02-CONTEXT.md"],
-  "next_action": "Restart Flask server (python run.py), re-verify UAT test 2 (Registration Flow) at /auth/register — confirm page is centered/styled and strong password (Passw0rd!) accepted, weak password (password1) rejected. Then proceed to test 3 (Login Flow).",
-  "context_notes": "Phase 2 auth system fully built (5/5 plans). UAT 2/10 tests passed (test 1 cold start, test 2 registration flow identified but gaps fixed). Test 3 (Login Flow) is next. Server runs on port 5000 with debug mode."
+  "uncommitted_files": [],
+  "next_action": "Execute /gsd-ship to finalize Phase 2 branch, then run /gsd-plan-phase 3 to begin planning Phase 3 (Dashboard & Sidebar).",
+  "context_notes": "Phase 2 auth system is 100% complete, visually styled, and fully verified by the user. All 10/10 manual and automated UAT tests successfully passed. Pytest suite passes 30/30 cleanly. Dev server cleanly shut down."
 }
