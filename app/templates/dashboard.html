@@ -8,11 +8,21 @@
         <div class="card-body p-4 p-md-5 text-white">
             <div class="row align-items-center">
                 <div class="col-md-8">
-                    <span class="badge bg-primary-subtle text-primary mb-3 px-3 py-2" style="font-weight: 600; font-size: 12px; border-radius: 20px;">
-                        <i class="bi bi-shield-check me-1"></i> Secure Session Active
+                    {% if current_user.role.value == 'admin' %}
+                    <span class="badge bg-danger-subtle text-danger mb-3 px-3 py-2" style="font-weight: 600; font-size: 12px; border-radius: 20px;">
+                        <i class="bi bi-shield-lock-fill me-1"></i> System Admin
                     </span>
+                    {% elif current_user.role.value == 'superuser' %}
+                    <span class="badge bg-warning-subtle text-warning mb-3 px-3 py-2" style="font-weight: 600; font-size: 12px; border-radius: 20px;">
+                        <i class="bi bi-shield-fill-check me-1"></i> Client Admin
+                    </span>
+                    {% else %}
+                    <span class="badge bg-success-subtle text-success mb-3 px-3 py-2" style="font-weight: 600; font-size: 12px; border-radius: 20px;">
+                        <i class="bi bi-person-badge-fill me-1"></i> User
+                    </span>
+                    {% endif %}
                     <h1 class="display-5 fw-bold mb-2">Welcome Back!</h1>
-                    <p class="lead text-white-50 mb-0">Logged in as: <strong class="text-white">{{ user.email }}</strong></p>
+                    <p class="lead text-white-50 mb-0">Logged in as: <strong class="text-white">{{ current_user.email }}</strong></p>
                 </div>
                 <div class="col-md-4 text-md-end d-none d-md-block">
                     <i class="bi bi-speedometer2 text-white-50" style="font-size: 5.5rem; opacity: 0.15;"></i>
@@ -21,86 +31,133 @@
         </div>
     </div>
 
-    <!-- Quick Stats Grid -->
+    <!-- Quick Stats Grid (Mobile Stacked: col-12) -->
     <div class="row g-4 mb-4">
-        <!-- Card 1: Project Skeleton -->
+        
+        {% if current_user.role.value == 'user' %}
+        <!-- User Specific Widgets -->
+        
+        <!-- Account Profile -->
         <div class="col-12 col-md-4">
             <div class="card border-0 shadow-sm h-100" style="border-radius: 0.5rem; border-left: 4px solid #3b82f6 !important;">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <span class="text-muted fw-semibold" style="font-size: 14px;">Project Skeleton</span>
+                        <span class="text-muted fw-semibold" style="font-size: 14px;">Account Profile</span>
                         <div class="bg-primary-subtle text-primary rounded p-2">
-                            <i class="bi bi-folder2-open" style="font-size: 1.25rem;"></i>
+                            <i class="bi bi-person" style="font-size: 1.25rem;"></i>
                         </div>
                     </div>
-                    <h3 class="fw-bold mb-1">4 / 4</h3>
-                    <p class="text-success mb-0" style="font-size: 13px; font-weight: 500;">
-                        <i class="bi bi-patch-check-fill me-1"></i> Core structures complete
+                    <h5 class="fw-bold mb-1 text-truncate">{{ current_user.email }}</h5>
+                    <p class="text-muted mb-0" style="font-size: 13px; font-weight: 500;">
+                        <i class="bi bi-calendar3 me-1"></i> Joined: {{ current_user.created_at.strftime('%b %d, %Y') }}
                     </p>
                 </div>
             </div>
         </div>
 
-        <!-- Card 2: Auth Security Status -->
+        <!-- Security Status -->
         <div class="col-12 col-md-4">
             <div class="card border-0 shadow-sm h-100" style="border-radius: 0.5rem; border-left: 4px solid #10b981 !important;">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <span class="text-muted fw-semibold" style="font-size: 14px;">Auth Security</span>
+                        <span class="text-muted fw-semibold" style="font-size: 14px;">Security Status</span>
                         <div class="bg-success-subtle text-success rounded p-2">
-                            <i class="bi bi-shield-lock" style="font-size: 1.25rem;"></i>
+                            <i class="bi bi-shield-check" style="font-size: 1.25rem;"></i>
                         </div>
                     </div>
-                    <h3 class="fw-bold mb-1">4-of-4 Types</h3>
+                    <h5 class="fw-bold mb-1">Protected</h5>
                     <p class="text-success mb-0" style="font-size: 13px; font-weight: 500;">
-                        <i class="bi bi-patch-check-fill me-1"></i> Policy active & verified
+                        <i class="bi bi-patch-check-fill me-1"></i> Strict password policy active
                     </p>
                 </div>
             </div>
         </div>
-
-        <!-- Card 3: Session Health -->
+        
+        <!-- Help -->
         <div class="col-12 col-md-4">
             <div class="card border-0 shadow-sm h-100" style="border-radius: 0.5rem; border-left: 4px solid #8b5cf6 !important;">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <span class="text-muted fw-semibold" style="font-size: 14px;">Session Status</span>
+                        <span class="text-muted fw-semibold" style="font-size: 14px;">Help & Support</span>
                         <div class="bg-purple-subtle text-purple rounded p-2" style="background-color: #f3e8ff; color: #a855f7;">
-                            <i class="bi bi-fingerprint" style="font-size: 1.25rem;"></i>
+                            <i class="bi bi-life-preserver" style="font-size: 1.25rem;"></i>
                         </div>
                     </div>
-                    <h3 class="fw-bold mb-1">Active</h3>
+                    <h5 class="fw-bold mb-1">Documentation</h5>
                     <p class="text-muted mb-0" style="font-size: 13px; font-weight: 500;">
-                        <i class="bi bi-clock me-1"></i> Cookie security enforced
+                        <a href="#" class="text-decoration-none"><i class="bi bi-box-arrow-up-right me-1"></i> Read User Guide</a>
                     </p>
                 </div>
             </div>
         </div>
-    </div>
+        {% endif %}
 
-    <!-- Getting Started Section -->
-    <div class="card border-0 shadow-sm" style="border-radius: 0.5rem;">
-        <div class="card-body p-4">
-            <h4 class="fw-bold mb-4"><i class="bi bi-rocket-takeoff text-primary me-2"></i> Getting Started Checklist</h4>
-            <div class="row g-4">
-                <div class="col-12 col-md-6">
-                    <div class="p-3 bg-light rounded border border-light-subtle h-100">
-                        <h6 class="fw-bold mb-2"><i class="bi bi-check2-circle text-success me-2"></i> Phase 1 & 2 Scaffold Complete</h6>
-                        <p class="text-muted mb-0" style="font-size: 13.5px;">
-                            Your Flask scaffold is production-ready. The application utilizes a highly organized app factory pattern, secure configurations, relative SQLite URI, and CSRF protection.
-                        </p>
+        {% if current_user.role.value in ['admin', 'superuser'] %}
+        <!-- Administrative Widgets -->
+        
+        <!-- Total Users -->
+        <div class="col-12 col-md-{% if current_user.role.value == 'admin' %}4{% else %}6{% endif %}">
+            <div class="card border-0 shadow-sm h-100" style="border-radius: 0.5rem; border-left: 4px solid #3b82f6 !important;">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-muted fw-semibold" style="font-size: 14px;">Total Users</span>
+                        <div class="bg-primary-subtle text-primary rounded p-2">
+                            <i class="bi bi-people" style="font-size: 1.25rem;"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-12 col-md-6">
-                    <div class="p-3 bg-light rounded border border-light-subtle h-100">
-                        <h6 class="fw-bold mb-2"><i class="bi bi-terminal text-primary me-2"></i> Admin CLI Commands</h6>
-                        <p class="text-muted mb-0" style="font-size: 13.5px;">
-                            Use `flask create-admin` in your terminal to interactively register superusers, or promote existing accounts via `flask set-admin <email>`.
-                        </p>
-                    </div>
+                    <h3 class="fw-bold mb-1">{{ total_users if total_users is not none else 'N/A' }}</h3>
+                    <p class="text-success mb-0" style="font-size: 13px; font-weight: 500;">
+                        <i class="bi bi-graph-up me-1"></i> Active user base
+                    </p>
                 </div>
             </div>
         </div>
+
+        <!-- Role Breakdown -->
+        <div class="col-12 col-md-{% if current_user.role.value == 'admin' %}4{% else %}6{% endif %}">
+            <div class="card border-0 shadow-sm h-100" style="border-radius: 0.5rem; border-left: 4px solid #10b981 !important;">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-muted fw-semibold" style="font-size: 14px;">Role Breakdown</span>
+                        <div class="bg-success-subtle text-success rounded p-2">
+                            <i class="bi bi-pie-chart" style="font-size: 1.25rem;"></i>
+                        </div>
+                    </div>
+                    {% if role_counts %}
+                        <div class="d-flex justify-content-between mb-0">
+                            <small class="text-muted fw-bold">Admin: <span class="text-dark">{{ role_counts.get('admin', 0) }}</span></small>
+                            <small class="text-muted fw-bold">Super: <span class="text-dark">{{ role_counts.get('superuser', 0) }}</span></small>
+                            <small class="text-muted fw-bold">User: <span class="text-dark">{{ role_counts.get('user', 0) }}</span></small>
+                        </div>
+                    {% else %}
+                        <h5 class="fw-bold mb-1">N/A</h5>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        {% if current_user.role.value == 'admin' %}
+        <!-- System Config Status -->
+        <div class="col-12 col-md-4">
+            <div class="card border-0 shadow-sm h-100" style="border-radius: 0.5rem; border-left: 4px solid #f59e0b !important;">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-muted fw-semibold" style="font-size: 14px;">System Config</span>
+                        <div class="bg-warning-subtle text-warning rounded p-2" style="color: #d97706 !important;">
+                            <i class="bi bi-sliders" style="font-size: 1.25rem;"></i>
+                        </div>
+                    </div>
+                    <ul class="list-unstyled mb-0" style="font-size: 13px;">
+                        <li class="mb-1"><i class="bi bi-envelope me-2 text-muted"></i> SMTP: <strong>{{ sys_config.mail_server if sys_config else 'N/A' }}</strong></li>
+                        <li class="mb-1"><i class="bi bi-speedometer me-2 text-muted"></i> Rate Limit: <strong>{{ sys_config.ratelimit if sys_config else 'N/A' }}</strong></li>
+                        <li><i class="bi bi-database me-2 text-muted"></i> DB: <strong>{{ sys_config.db_dialect if sys_config else 'N/A' }}</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endif %}
     </div>
+
 </div>
 {% endblock %}

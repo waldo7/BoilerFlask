@@ -245,3 +245,36 @@
         padding: 24px;
     }
 }
+
+/* ============================================
+   Phase 3: Dashboard & Sidebar Enhancements
+   ============================================ */
+
+/* Touch targets & micro-animations */
+.touch-target {
+    min-height: 48px;
+    min-width: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn, .sidebar-desktop .nav-link, #mobileSidebar .nav-link {
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.btn:active, .sidebar-desktop .nav-link:active, #mobileSidebar .nav-link:active, .touch-target:active {
+    transform: scale(0.98);
+}
+
+/* Sidebar active item glowing left border */
+.sidebar-desktop .nav-link.active,
+#mobileSidebar .nav-link.active {
+    border-left: 3px solid #93c5fd;
+    padding-left: calc(1rem - 3px);
+}
+
+/* Premium mobile topbar shadow */
+.mobile-topbar {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}

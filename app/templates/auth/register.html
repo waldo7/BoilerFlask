@@ -29,8 +29,8 @@
         <label for="password" class="form-label">Password</label>
         <div class="input-group">
             <input type="password" name="password" id="password"
-                   class="form-control {% if form.password.errors %}is-invalid{% endif %}">
-            <button class="btn btn-outline-secondary" type="button"
+                   class="form-control border-end-0 rounded-end-0 {% if form.password.errors %}is-invalid{% endif %}">
+            <button class="btn bg-light border border-start-0 rounded-start-0 text-secondary" type="button"
                     data-bs-toggle="tooltip" title="Show password"
                     onclick="var p=document.getElementById('password');var i=this.querySelector('i');if(p.type==='password'){p.type='text';i.className='bi bi-eye-slash';}else{p.type='password';i.className='bi bi-eye';}">
                 <i class="bi bi-eye"></i>
@@ -46,8 +46,8 @@
         <label for="confirm_password" class="form-label">Confirm password</label>
         <div class="input-group">
             <input type="password" name="confirm_password" id="confirm_password"
-                   class="form-control {% if form.confirm_password.errors %}is-invalid{% endif %}">
-            <button class="btn btn-outline-secondary" type="button"
+                   class="form-control border-end-0 rounded-end-0 {% if form.confirm_password.errors %}is-invalid{% endif %}">
+            <button class="btn bg-light border border-start-0 rounded-start-0 text-secondary" type="button"
                     data-bs-toggle="tooltip" title="Show password"
                     onclick="var p=document.getElementById('confirm_password');var i=this.querySelector('i');if(p.type==='password'){p.type='text';i.className='bi bi-eye-slash';}else{p.type='password';i.className='bi bi-eye';}">
                 <i class="bi bi-eye"></i>

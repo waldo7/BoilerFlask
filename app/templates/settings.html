@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% block title %}Settings — FlaskStuct{% endblock %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold mb-0">Account Settings</h2>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <ul class="nav nav-tabs mb-4" id="settingsTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link {% if request.method == 'GET' and not form.errors %}active{% endif %} fw-semibold" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="{% if request.method == 'GET' and not form.errors %}true{% else %}false{% endif %}">
+                <i class="bi bi-person me-1"></i> Account Profile
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link {% if request.method == 'POST' or form.errors %}active{% endif %} fw-semibold" id="security-tab" data-bs-toggle="tab" data-bs-target="#security" type="button" role="tab" aria-controls="security" aria-selected="{% if request.method == 'POST' or form.errors %}true{% else %}false{% endif %}">
+                <i class="bi bi-shield-lock me-1"></i> Security & Credentials
+            </button>
+        </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content" id="settingsTabsContent">
+        
+        <!-- Tab 1: Account Profile -->
+        <div class="tab-pane fade {% if request.method == 'GET' and not form.errors %}show active{% endif %}" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="row">
+                <div class="col-12 col-md-8 col-lg-6">
+                    <div class="card border-0 shadow-sm" style="border-radius: 0.5rem;">
+                        <div class="card-body p-4">
+                            <h5 class="fw-bold mb-4">Profile Details</h5>
+                            
+                            <div class="mb-3">
+                                <label class="text-muted small fw-semibold text-uppercase">Email Address</label>
+                                <p class="mb-0 fw-medium" style="font-size: 15px;">{{ current_user.email }}</p>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="text-muted small fw-semibold text-uppercase">System Role</label>
+                                <div>
+                                    {% if current_user.role.value == 'admin' %}
+                                        <span class="badge bg-danger-subtle text-danger px-2 py-1"><i class="bi bi-shield-lock-fill me-1"></i> System Admin</span>
+                                    {% elif current_user.role.value == 'superuser' %}
+                                        <span class="badge bg-warning-subtle text-warning px-2 py-1"><i class="bi bi-shield-fill-check me-1"></i> Client Admin</span>
+                                    {% else %}
+                                        <span class="badge bg-success-subtle text-success px-2 py-1"><i class="bi bi-person-badge-fill me-1"></i> User</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="text-muted small fw-semibold text-uppercase">Member Since</label>
+                                <p class="mb-0 fw-medium" style="font-size: 15px;">{{ current_user.created_at.strftime('%B %d, %Y') }}</p>
+                            </div>
+
+                            <div class="mb-0">
+                                <label class="text-muted small fw-semibold text-uppercase">Account Status</label>
+                                <p class="mb-0 fw-medium text-success" style="font-size: 15px;"><i class="bi bi-check-circle-fill me-1"></i> Active</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if current_user.role.value in ['admin', 'superuser'] and sys_config %}
+                    <div class="card border-0 shadow-sm mt-4" style="border-radius: 0.5rem; border-left: 4px solid #f59e0b !important;">
+                        <div class="card-body p-4">
+                            <h5 class="fw-bold mb-4"><i class="bi bi-sliders text-warning me-2"></i> Admin Config Overview</h5>
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <label class="text-muted small fw-semibold text-uppercase">Mail Server</label>
+                                    <p class="mb-0 fw-medium" style="font-size: 14px;">{{ sys_config.mail_server }}</p>
+                                </div>
+                                <div class="col-6">
+                                    <label class="text-muted small fw-semibold text-uppercase">DB Dialect</label>
+                                    <p class="mb-0 fw-medium" style="font-size: 14px;">{{ sys_config.db_dialect }}</p>
+                                </div>
+                                <div class="col-12 mt-2">
+                                    <label class="text-muted small fw-semibold text-uppercase">Rate Limit Policy</label>
+                                    <p class="mb-0 fw-medium" style="font-size: 14px;">{{ sys_config.ratelimit }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Security & Credentials -->
+        <div class="tab-pane fade {% if request.method == 'POST' or form.errors %}show active{% endif %}" id="security" role="tabpanel" aria-labelledby="security-tab">
+            <div class="row">
+                <div class="col-12 col-md-8 col-lg-6">
+                    <div class="card border-0 shadow-sm" style="border-radius: 0.5rem; border-top: 4px solid #3b82f6 !important;">
+                        <div class="card-body p-4">
+                            <h5 class="fw-bold mb-3">Change Password</h5>
+                            <p class="text-muted small mb-4">Ensure your account is using a long, random password to stay secure. Changing your password will log you out of all active sessions.</p>
+                            
+                            <form method="POST" action="{{ url_for('main.settings') }}">
+                                {{ form.hidden_tag() }}
+                                
+                                <div class="mb-3">
+                                    {{ form.current_password.label(class="form-label fw-semibold") }}
+                                    <div class="input-group has-validation">
+                                        {{ form.current_password(class="form-control border-end-0 rounded-end-0" + (" is-invalid" if form.current_password.errors else ""), id="current_password") }}
+                                        <button class="btn bg-light border border-start-0 rounded-start-0 text-secondary" type="button" onclick="togglePassword('current_password', this)">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                        {% for error in form.current_password.errors %}
+                                            <div class="invalid-feedback">{{ error }}</div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    {{ form.new_password.label(class="form-label fw-semibold") }}
+                                    <div class="input-group has-validation">
+                                        {{ form.new_password(class="form-control border-end-0 rounded-end-0" + (" is-invalid" if form.new_password.errors else ""), id="new_password") }}
+                                        <button class="btn bg-light border border-start-0 rounded-start-0 text-secondary" type="button" onclick="togglePassword('new_password', this)">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                        {% for error in form.new_password.errors %}
+                                            <div class="invalid-feedback">{{ error }}</div>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="form-text small">At least 8 characters. Must contain uppercase, lowercase, numbers, and symbols.</div>
+                                </div>
+
+                                <div class="mb-4">
+                                    {{ form.confirm_password.label(class="form-label fw-semibold") }}
+                                    <div class="input-group has-validation">
+                                        {{ form.confirm_password(class="form-control border-end-0 rounded-end-0" + (" is-invalid" if form.confirm_password.errors else ""), id="confirm_password") }}
+                                        <button class="btn bg-light border border-start-0 rounded-start-0 text-secondary" type="button" onclick="togglePassword('confirm_password', this)">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                        {% for error in form.confirm_password.errors %}
+                                            <div class="invalid-feedback">{{ error }}</div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary fw-semibold px-4 py-2 w-100 touch-target">
+                                    <i class="bi bi-shield-lock me-1"></i> Update Password
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

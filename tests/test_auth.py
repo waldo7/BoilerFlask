@@ -275,7 +275,7 @@ def test_dashboard_authenticated(auth_client, user):
     response = auth_client.get('/dashboard')
     assert response.status_code == 200
     assert b'test@example.com' in response.data
-    assert b'Getting Started' in response.data
+    assert b'Account Profile' in response.data
 
 
 # ---------------------------------------------------------------------------

@@ -12,13 +12,13 @@
 - [ ] **AUTH-03**: User can log out from any page
 - [ ] **AUTH-04**: User can request password reset via email
 - [ ] **AUTH-05**: User has a role (admin or user) assigned
-- [ ] **AUTH-06**: Admin users see admin-only items in sidebar
+- [x] **AUTH-06**: Admin users see admin-only items in sidebar
 
 ### Main Pages
 
 - [x] **MAIN-01**: Homepage shows "Flask app is running" placeholder
-- [ ] **MAIN-02**: Authenticated users see dashboard after login
-- [ ] **MAIN-03**: Sidebar renders Dashboard and Settings links
+- [x] **MAIN-02**: Authenticated users see dashboard after login
+- [x] **MAIN-03**: Sidebar renders Dashboard and Settings links
 
 ### Layout & Design
 
@@ -28,9 +28,9 @@
 ### Mobile
 
 - [x] **MOB-01**: Sidebar collapses to hamburger menu on screens < 768px
-- [ ] **MOB-02**: All pages are readable and functional on 320px+ viewports
+- [x] **MOB-02**: All pages are readable and functional on 320px+ viewports
 - [x] **MOB-03**: Login/register forms are full-width and touch-friendly on mobile
-- [ ] **MOB-04**: Dashboard layout stacks vertically on mobile
+- [x] **MOB-04**: Dashboard layout stacks vertically on mobile
 
 ## v2 Requirements
 
@@ -73,18 +73,19 @@
 | AUTH-03 | Phase 2 | Pending |
 | AUTH-04 | Phase 2 | Pending |
 | AUTH-05 | Phase 2 | Pending |
-| AUTH-06 | Phase 3 | Pending |
+| AUTH-06 | Phase 3 | Complete |
 | MAIN-01 | Phase 1 | Complete |
-| MAIN-02 | Phase 3 | Pending |
-| MAIN-03 | Phase 3 | Pending |
+| MAIN-02 | Phase 3 | Complete |
+| MAIN-03 | Phase 3 | Complete |
 | LAYOUT-01 | Phase 1 | Complete |
 | LAYOUT-02 | Phase 1 | Complete |
 | MOB-01 | Phase 1 | Complete |
-| MOB-02 | Phase 3 | Pending |
+| MOB-02 | Phase 3 | Complete |
 | MOB-03 | Phase 1 | Complete |
-| MOB-04 | Phase 3 | Pending |
+| MOB-04 | Phase 3 | Complete |
 
 **Coverage:**
+
 - v1 requirements: 15 total
 - Mapped to phases: 15
 - Unmapped: 0 ✓
