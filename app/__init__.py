@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template
+from flask import Flask, flash, redirect, render_template, request
 
 
 def create_app(config_name=None):
@@ -71,6 +71,11 @@ def create_app(config_name=None):
 
     # Register error handlers (shared error template pattern per D-12)
     register_error_handlers(app)
+
+    @app.errorhandler(429)
+    def ratelimit_error(e):
+        flash(f"Too many attempts. Please try again later.", 'warning')
+        return redirect(request.url)
 
     # Dev database bootstrap — create tables if missing
     if not app.config.get('TESTING') and app.config.get('DEBUG'):

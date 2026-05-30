@@ -23,6 +23,7 @@ class User(UserMixin, db.Model):
     is_active = db.Column(db.Boolean, default=True, nullable=False)
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
     updated_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
+    password_reset_requested_at = db.Column(db.DateTime, nullable=True)
 
     def __init__(self, **kwargs):
         kwargs.setdefault('role', Role.USER)
