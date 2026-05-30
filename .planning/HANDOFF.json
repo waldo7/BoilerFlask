@@ -1,34 +1,36 @@
 {
   "version": "1.0",
-  "timestamp": "2026-05-30T10:43:50Z",
+  "timestamp": "2026-05-30T19:40:00Z",
   "phase": "05",
   "phase_name": "add-oauth",
   "phase_dir": ".planning/phases/05-add-oauth",
   "plan": 1,
-  "task": 0,
+  "task": 6,
   "total_tasks": 6,
-  "status": "paused",
-  "completed_tasks": [],
-  "remaining_tasks": [
-    {"id": 1, "name": "01-dependencies", "status": "not_started"},
-    {"id": 2, "name": "02-configuration", "status": "not_started"},
-    {"id": 3, "name": "03-database-models", "status": "not_started"},
-    {"id": 4, "name": "04-oauth-logic", "status": "not_started"},
-    {"id": 5, "name": "05-templates-auth", "status": "not_started"},
-    {"id": 6, "name": "06-settings-password", "status": "not_started"}
+  "status": "complete",
+  "completed_tasks": [
+    {"id": 1, "name": "01-dependencies", "status": "done", "commit": "fbd4919"},
+    {"id": 2, "name": "02-configuration", "status": "done", "commit": "6da4ea0"},
+    {"id": 3, "name": "03-database-models", "status": "done", "commit": "91429f9"},
+    {"id": 4, "name": "04-oauth-logic", "status": "done", "commit": "4070947"},
+    {"id": 5, "name": "05-templates-auth", "status": "done", "commit": "f912a87"},
+    {"id": 6, "name": "06-settings-password", "status": "done", "commit": "b567e2e"}
   ],
+  "remaining_tasks": [],
   "blockers": [],
-  "human_actions_pending": [],
+  "human_actions_pending": [
+    {
+      "action": "Configure OAuth provider credentials in .env",
+      "context": "Google and GitHub OAuth require client IDs and secrets from their respective developer consoles. Without these, the OAuth login buttons will redirect but the flow will fail at authorization.",
+      "blocking": false
+    }
+  ],
   "decisions": [
     {"decision": "Allow nullable passwords", "rationale": "For OAuth-only users without local passwords", "phase": "05"},
-    {"decision": "Account auto-linking", "rationale": "Best UX to link Google/Github accounts if email matches existing", "phase": "05"}
+    {"decision": "Account auto-linking", "rationale": "Best UX to link Google/GitHub accounts if email matches existing", "phase": "05"},
+    {"decision": "init_oauth(app) factory pattern", "rationale": "App factory requires config-loaded blueprint creation, not module-level", "phase": "05"}
   ],
-  "uncommitted_files": [
-    ".planning/phases/05-add-oauth/05-RESEARCH.md",
-    ".planning/phases/05-add-oauth/05-01-PLAN.md",
-    ".planning/STATE.md",
-    ".planning/ROADMAP.md"
-  ],
-  "next_action": "Run /gsd-execute-phase 5 to begin execution",
-  "context_notes": "Planning is fully complete for Phase 05. Pausing right before execution begins."
+  "uncommitted_files": [],
+  "next_action": "All 5 phases complete. Milestone v1.0 ready for verification / review.",
+  "context_notes": "Phase 5 executed inline (Copilot sequential mode). Flask-Dance import path corrected from .backend.sqla to .storage.sqla. All 36 tests pass. OAuth buttons are rendered but non-functional without provider credentials in .env."
 }
