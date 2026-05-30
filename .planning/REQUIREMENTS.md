@@ -16,20 +16,20 @@
 
 ### Main Pages
 
-- [ ] **MAIN-01**: Homepage shows "Flask app is running" placeholder
+- [x] **MAIN-01**: Homepage shows "Flask app is running" placeholder
 - [ ] **MAIN-02**: Authenticated users see dashboard after login
 - [ ] **MAIN-03**: Sidebar renders Dashboard and Settings links
 
 ### Layout & Design
 
-- [ ] **LAYOUT-01**: base.html provides consistent layout with Bootstrap 5
-- [ ] **LAYOUT-02**: Error pages exist and are styled (403, 404, 500)
+- [x] **LAYOUT-01**: base.html provides consistent layout with Bootstrap 5
+- [x] **LAYOUT-02**: Error pages exist and are styled (403, 404, 500)
 
 ### Mobile
 
-- [ ] **MOB-01**: Sidebar collapses to hamburger menu on screens < 768px
+- [x] **MOB-01**: Sidebar collapses to hamburger menu on screens < 768px
 - [ ] **MOB-02**: All pages are readable and functional on 320px+ viewports
-- [ ] **MOB-03**: Login/register forms are full-width and touch-friendly on mobile
+- [x] **MOB-03**: Login/register forms are full-width and touch-friendly on mobile
 - [ ] **MOB-04**: Dashboard layout stacks vertically on mobile
 
 ## v2 Requirements
@@ -74,14 +74,14 @@
 | AUTH-04 | Phase 2 | Pending |
 | AUTH-05 | Phase 2 | Pending |
 | AUTH-06 | Phase 3 | Pending |
-| MAIN-01 | Phase 1 | Pending |
+| MAIN-01 | Phase 1 | Complete |
 | MAIN-02 | Phase 3 | Pending |
 | MAIN-03 | Phase 3 | Pending |
-| LAYOUT-01 | Phase 1 | Pending |
-| LAYOUT-02 | Phase 1 | Pending |
-| MOB-01 | Phase 1 | Pending |
+| LAYOUT-01 | Phase 1 | Complete |
+| LAYOUT-02 | Phase 1 | Complete |
+| MOB-01 | Phase 1 | Complete |
 | MOB-02 | Phase 3 | Pending |
-| MOB-03 | Phase 1 | Pending |
+| MOB-03 | Phase 1 | Complete |
 | MOB-04 | Phase 3 | Pending |
 
 **Coverage:**
@@ -91,4 +91,4 @@
 
 ---
 *Requirements defined: 2026-05-30*
-*Last updated: 2026-05-30 after initial definition*
+*Last updated: 2026-05-30T03:08:25Z (Plan 01-02 executed)*
