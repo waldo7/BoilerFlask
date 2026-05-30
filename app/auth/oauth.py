@@ -95,7 +95,7 @@ def _handle_oauth_login(email):
 
     user = User.query.filter_by(email=email).first()
     if user is None:
-        user = User(email=email, role='user')
+        user = User(email=email, role='USER')
         db.session.add(user)
         db.session.commit()
 
