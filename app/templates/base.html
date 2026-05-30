@@ -21,39 +21,70 @@
     {% endblock %}
 </head>
 <body>
-    <div class="container-fluid p-0">
-        <div class="row g-0">
-
-            <!-- Hamburger Button (mobile only per D-03) -->
-            <button class="btn hamburger-btn d-md-none" type="button"
+    <!-- Mobile Top Bar -->
+    <nav class="navbar navbar-light bg-light d-md-none mobile-topbar">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0">
+                <i class="bi bi-house"></i> FlaskStuct
+            </span>
+            <button class="navbar-toggler" type="button"
                     data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar"
                     aria-controls="mobileSidebar">
                 <span class="navbar-toggler-icon"></span>
             </button>
+        </div>
+    </nav>
+
+    <div class="container-fluid p-0">
+        <div class="row g-0">
 
             {% block sidebar %}
             <!-- Desktop Fixed Sidebar (visible >= 768px per D-03) -->
-            <div class="sidebar-desktop d-none d-md-flex flex-column">
-                <!-- Brand Header (D-06) -->
-                <div class="sidebar-brand">
-                    <i class="bi bi-house"></i> FlaskStuct
+            <div class="sidebar-desktop d-none d-md-flex flex-column justify-content-between">
+                <div>
+                    <!-- Brand Header (D-06) -->
+                    <div class="sidebar-brand">
+                        <i class="bi bi-house"></i> FlaskStuct
+                    </div>
+
+                    <!-- Navigation Links (D-05, D-08) -->
+                    <ul class="nav flex-column px-2">
+                        <li class="nav-item">
+                            <a href="{{ url_for('main.dashboard') }}"
+                               class="nav-link {% if request.endpoint == 'main.dashboard' %}active{% endif %}">
+                                <i class="bi bi-speedometer2 me-2"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#"
+                               class="nav-link {% if request.endpoint == 'main.settings' %}active{% endif %}">
+                                <i class="bi bi-gear me-2"></i> Settings
+                            </a>
+                        </li>
+                    </ul>
                 </div>
 
-                <!-- Navigation Links (D-05, D-08) -->
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a href="{{ url_for('main.index') }}"
-                           class="nav-link {% if request.endpoint == 'main.index' %}active{% endif %}">
-                            <i class="bi bi-speedometer2 me-2"></i> Dashboard
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ url_for('main.index') }}"
-                           class="nav-link {% if request.endpoint == 'main.index' %}active{% endif %}">
-                            <i class="bi bi-gear me-2"></i> Settings
-                        </a>
-                    </li>
-                </ul>
+                <!-- Premium User Profile summary footer at the bottom of the sidebar -->
+                {% if current_user.is_authenticated %}
+                <div class="mt-auto p-3 border-top border-secondary-subtle" style="border-top-color: #1e293b !important;">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2 shadow-sm" style="width: 38px; height: 38px; font-weight: 600; font-size: 16px;">
+                            {{ current_user.email[0].upper() }}
+                        </div>
+                        <div class="text-truncate" style="flex: 1; min-width: 0;">
+                            <div class="text-white text-truncate" style="font-size: 13.5px; font-weight: 600;">
+                                {{ current_user.email.split('@')[0] }}
+                            </div>
+                            <div class="text-muted text-truncate" style="font-size: 11.5px; font-weight: 400; color: #64748b !important;">
+                                {{ current_user.email }}
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-danger btn-sm w-100 py-1" style="font-size: 12px; font-weight: 600; border-color: rgba(220, 53, 69, 0.4);">
+                        <i class="bi bi-box-arrow-right me-1"></i> Log Out
+                    </a>
+                </div>
+                {% endif %}
             </div>
 
             <!-- Mobile Offcanvas Sidebar (visible < 768px per D-03) -->
@@ -66,21 +97,45 @@
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
                             aria-label="Close"></button>
                 </div>
-                <div class="offcanvas-body p-0">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a href="{{ url_for('main.index') }}"
-                               class="nav-link {% if request.endpoint == 'main.index' %}active{% endif %}">
-                                <i class="bi bi-speedometer2 me-2"></i> Dashboard
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url_for('main.index') }}"
-                               class="nav-link {% if request.endpoint == 'main.index' %}active{% endif %}">
-                                <i class="bi bi-gear me-2"></i> Settings
-                            </a>
-                        </li>
-                    </ul>
+                <div class="offcanvas-body p-0 d-flex flex-column justify-content-between">
+                    <div>
+                        <ul class="nav flex-column p-2">
+                            <li class="nav-item">
+                                <a href="{{ url_for('main.dashboard') }}"
+                                   class="nav-link {% if request.endpoint == 'main.dashboard' %}active{% endif %}">
+                                    <i class="bi bi-speedometer2 me-2"></i> Dashboard
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#"
+                                   class="nav-link">
+                                    <i class="bi bi-gear me-2"></i> Settings
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Mobile User Profile footer at the bottom of the offcanvas drawer -->
+                    {% if current_user.is_authenticated %}
+                    <div class="mt-auto p-3 border-top border-secondary-subtle" style="border-top-color: #1e293b !important; background-color: #0b0f19;">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 36px; height: 36px; font-weight: 600;">
+                                {{ current_user.email[0].upper() }}
+                            </div>
+                            <div class="text-truncate" style="flex: 1; min-width: 0;">
+                                <div class="text-white text-truncate" style="font-size: 13.5px; font-weight: 600;">
+                                    {{ current_user.email.split('@')[0] }}
+                                </div>
+                                <div class="text-muted text-truncate" style="font-size: 11.5px; font-weight: 400; color: #64748b !important;">
+                                    {{ current_user.email }}
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-danger btn-sm w-100 py-1">
+                            <i class="bi bi-box-arrow-right me-1"></i> Log Out
+                        </a>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
             {% endblock %}
