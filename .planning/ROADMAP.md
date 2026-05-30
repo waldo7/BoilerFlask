@@ -11,6 +11,14 @@
 
 **Requirements:** MAIN-01, LAYOUT-01, LAYOUT-02, MOB-01, MOB-03
 
+**Plans:** 4 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Project config, requirements, .gitignore, config.py classes, pytest test scaffold
+- [ ] 01-02-PLAN.md — App factory (create_app), extensions.py placeholder, app.css custom styles
+- [ ] 01-03-PLAN.md — Jinja templates: base.html (Bootstrap+sidebar), home.html, error.html, about.html, contact.html
+- [ ] 01-04-PLAN.md — Blueprints (main + auth), route handlers, run.py entry point
+
 **Success Criteria:**
 1. `python run.py` starts Flask without errors
 2. Visiting `/` displays homepage with "Flask app is running" placeholder
