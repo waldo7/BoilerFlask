@@ -14,7 +14,7 @@
 **Plans:** 4 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Project config, requirements, .gitignore, config.py classes, pytest test scaffold
+- [x] 01-01-PLAN.md — Project config, requirements, .gitignore, config.py classes, pytest test scaffold
 - [ ] 01-02-PLAN.md — App factory (create_app), extensions.py placeholder, app.css custom styles
 - [ ] 01-03-PLAN.md — Jinja templates: base.html (Bootstrap+sidebar), home.html, error.html, about.html, contact.html
 - [ ] 01-04-PLAN.md — Blueprints (main + auth), route handlers, run.py entry point
