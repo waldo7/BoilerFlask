@@ -1,10 +1,110 @@
-{% extends "base.html" %}
+{% extends "marketing_base.html" %}
 
-{% block title %}FlaskStuct - Home{% endblock %}
+{% block title %}FlaskStuct — The Ultimate Flask Production Scaffold{% endblock %}
 
 {% block content %}
-<div class="container-fluid py-4">
-    <h1>FlaskStuct</h1>
-    <p class="lead">Flask app is running.</p>
+<!-- Hero Section -->
+<div class="py-5 py-md-6 bg-white border-bottom border-light-subtle">
+    <div class="container py-4">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7 text-center text-lg-start">
+                <span class="badge bg-primary-subtle text-primary mb-3 px-3 py-2" style="font-weight: 600; font-size: 13px; border-radius: 20px;">
+                    <i class="bi bi-stars me-1"></i> Production Ready Scaffold
+                </span>
+                <h1 class="display-4 fw-bold text-dark mb-3 lh-1">
+                    Build Production-Ready Flask Apps, <span class="text-primary">Instantly.</span>
+                </h1>
+                <p class="lead text-muted mb-4 fs-4" style="font-weight: 400;">
+                    A beautifully structured, highly secure, and extremely responsive Flask 3.1+ foundation featuring built-in Auth, SQLite migrations, and modern UI components out of the box.
+                </p>
+                <div class="d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start gap-3">
+                    {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('main.dashboard') }}" class="btn btn-primary btn-lg px-4 py-3 shadow" style="font-weight: 600; border-radius: 0.5rem; font-size: 16px;">
+                            <i class="bi bi-speedometer2 me-2"></i> Go to Dashboard
+                        </a>
+                    {% else %}
+                        <a href="{{ url_for('auth.register') }}" class="btn btn-primary btn-lg px-4 py-3 shadow" style="font-weight: 600; border-radius: 0.5rem; font-size: 16px;">
+                            Get Started Free <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                        <a href="{{ url_for('auth.login') }}" class="btn btn-outline-secondary btn-lg px-4 py-3" style="font-weight: 600; border-radius: 0.5rem; font-size: 16px;">
+                            Sign In
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="card border-0 shadow-lg p-3" style="border-radius: 1rem; background: linear-gradient(135deg, #0f172a, #1e293b);">
+                    <div class="card-body text-white py-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <span class="badge bg-success me-2 px-2 py-1" style="font-size: 10px;">Scaffold Loaded</span>
+                            <span class="text-muted" style="font-size: 11px;">v1.0.0</span>
+                        </div>
+                        <h5 class="fw-bold mb-3"><i class="bi bi-terminal text-primary me-2"></i> Quick Features</h5>
+                        <ul class="list-unstyled mb-0 d-flex flex-column gap-2" style="font-size: 14px; opacity: 0.9;">
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i> Flask 3.1+ App Factory Pattern</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i> Secure itsdangerous reset tokens</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i> Session-Cookie HTTPOnly protection</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i> SQLite migration scaffolding</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i> Premium responsive styling</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Features Grid -->
+<div class="py-5 bg-light">
+    <div class="container py-4">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold text-dark">Engineered for Rapid Development</h2>
+            <p class="text-muted col-lg-6 mx-auto">Focus on writing your business logic while FlaskStuct handles the boilerplate wiring, security, and responsive layouts.</p>
+        </div>
+        <div class="row g-4">
+            <!-- Feature 1 -->
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 p-3" style="border-radius: 0.75rem;">
+                    <div class="card-body">
+                        <div class="bg-primary-subtle text-primary rounded p-3 d-inline-block mb-3">
+                            <i class="bi bi-box-seam" style="font-size: 1.5rem;"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2">Modular Blueprints</h5>
+                        <p class="text-muted mb-0" style="font-size: 14px;">
+                            App factory organization using domain-specific blueprints separates landing content, authentication logic, and user panels.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Feature 2 -->
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 p-3" style="border-radius: 0.75rem;">
+                    <div class="card-body">
+                        <div class="bg-success-subtle text-success rounded p-3 d-inline-block mb-3">
+                            <i class="bi bi-shield-check" style="font-size: 1.5rem;"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2">Built-in Security</h5>
+                        <p class="text-muted mb-0" style="font-size: 14px;">
+                            Equipped with password hashing, secure cookie directives, CSRF protection, and smart rate-limiting (10 requests/min).
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Feature 3 -->
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 p-3" style="border-radius: 0.75rem;">
+                    <div class="card-body">
+                        <div class="bg-purple-subtle text-purple rounded p-3 d-inline-block mb-3" style="background-color: #f3e8ff; color: #a855f7;">
+                            <i class="bi bi-phone" style="font-size: 1.5rem;"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2">Sleek Offcanvas Mobile</h5>
+                        <p class="text-muted mb-0" style="font-size: 14px;">
+                            Fully responsive desktop fixed sidebars that elegantly collapse into custom mobile offcanvas drawers at the 768px breakpoint.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
