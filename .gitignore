@@ -5,3 +5,4 @@ __pycache__/
 *.pyc
 .planning/
 AGENTS.md
+.vscode/
