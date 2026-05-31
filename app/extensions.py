@@ -1,4 +1,4 @@
-"""FlaskStuct — Extension instances.
+"""BoilerFlask — Extension instances.
 
 Created without app binding to prevent circular imports.
 Extension init_app() calls are wired in create_app() (Phase 2).

@@ -1,8 +1,8 @@
-# AGENTS.md — FlaskStuct
+# AGENTS.md — BoilerFlask
 
 ## Project
-- **Name:** FlaskStuct
-- **Repo:** `flaskstuct/`
+- **Name:** BoilerFlask
+- **Repo:** `boilerflask/`
 - **Stack:** Flask 3.1+, Jinja, Bootstrap 5, SQLAlchemy (SQLite dev, Postgres/MySQL prod)
 - **Planning:** `.planning/` — PROJECT.md, REQUIREMENTS.md, ROADMAP.md, STATE.md
 

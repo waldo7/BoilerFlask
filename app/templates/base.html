@@ -4,7 +4,7 @@
     {% block head %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}FlaskStuct{% endblock %}</title>
+    <title>{% block title %}BoilerFlask{% endblock %}</title>
 
     <!-- Bootstrap 5.3.8 CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
@@ -25,7 +25,7 @@
     <nav class="navbar navbar-light bg-light d-md-none mobile-topbar">
         <div class="container-fluid">
             <span class="navbar-brand mb-0">
-                <i class="bi bi-house"></i> {{ active_page|title if active_page else 'FlaskStuct' }}
+                <i class="bi bi-house"></i> {{ active_page|title if active_page else 'BoilerFlask' }}
             </span>
             <button class="navbar-toggler" type="button"
                     data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar"
@@ -44,7 +44,7 @@
                 <div>
                     <!-- Brand Header (D-06) -->
                     <div class="sidebar-brand">
-                        <i class="bi bi-house"></i> FlaskStuct
+                        <i class="bi bi-house"></i> BoilerFlask
                     </div>
 
                     <!-- Navigation Links (D-05, D-08) -->
@@ -122,7 +122,7 @@
                  aria-labelledby="mobileSidebarLabel">
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title" id="mobileSidebarLabel">
-                        <i class="bi bi-house"></i> FlaskStuct
+                        <i class="bi bi-house"></i> BoilerFlask
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
                             aria-label="Close"></button>

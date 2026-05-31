@@ -120,7 +120,7 @@ def forgot_password():
                 try:
                     from flask_mail import Message
                     msg = Message(
-                        subject='Password Reset — FlaskStuct',
+                        subject='Password Reset — BoilerFlask',
                         sender=current_app.config['MAIL_DEFAULT_SENDER'],
                         recipients=[user.email],
                         body=f'Use this link to reset your password:\n\n{url_for("auth.reset_password", token=token, _external=True)}\n\nThis link expires in 1 hour.',

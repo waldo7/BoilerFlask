@@ -1,4 +1,4 @@
-# FlaskStuct
+# BoilerFlask
 
 A production-ready, organized Flask foundation with authentication and a responsive UI out of the box.
 
@@ -14,21 +14,17 @@ A production-ready, organized Flask foundation with authentication and a respons
 1. **Clone the repository:**
    ```bash
    git clone <repository-url>
-   cd flaskstuct
+   cd boilerflask
    ```
 
 2. **Create a virtual environment:**
    ```bash
-   python -m venv venv
-   # On Windows:
-   .\venv\Scripts\activate
-   # On macOS/Linux:
-   source venv/bin/activate
+   python3 -m venv venv
    ```
 
 3. **Install dependencies:**
    ```bash
-   pip install -r requirements.txt
+   ./venv/bin/pip install -r requirements.txt
    ```
 
 4. **Environment Variables:**
@@ -39,16 +35,13 @@ A production-ready, organized Flask foundation with authentication and a respons
 
 5. **Run the development server:**
    ```bash
-   # On Windows PowerShell:
-   .\venv\Scripts\python run.py
-   # On Bash/WSL:
    ./venv/bin/python run.py
    ```
 
 ## Running Tests
-To run the test suite via WSL:
+To run the test suite:
 ```bash
-wsl ./venv/bin/python -m pytest
+./venv/bin/python -m pytest
 ```
 
 ## License
