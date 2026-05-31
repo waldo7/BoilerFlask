@@ -13,36 +13,61 @@ A production-ready, organized Flask foundation with authentication and a respons
 
 1. **Clone the repository:**
    ```bash
-   git clone <repository-url>
-   cd boilerflask
+   git clone https://github.com/waldo7/BoilerFlask.git
+   cd BoilerFlask
    ```
 
 2. **Create a virtual environment:**
-   ```bash
-   python3 -m venv venv
-   ```
+   * **Windows (PowerShell):**
+     ```powershell
+     python -m venv venv
+     ```
+   * **Mac / Linux:**
+     ```bash
+     python3 -m venv venv
+     ```
 
 3. **Install dependencies:**
-   ```bash
-   ./venv/bin/pip install -r requirements.txt
-   ```
+   * **Windows (PowerShell):**
+     ```powershell
+     .\venv\Scripts\pip install -r requirements.txt
+     ```
+   * **Mac / Linux:**
+     ```bash
+     ./venv/bin/pip install -r requirements.txt
+     ```
 
 4. **Environment Variables:**
-   Copy the example environment file and fill in your details:
-   ```bash
-   cp .env.example .env
-   ```
+   Copy the example environment file:
+   * **Windows (PowerShell):**
+     ```powershell
+     Copy-Item .env.example .env
+     ```
+   * **Mac / Linux:**
+     ```bash
+     cp .env.example .env
+     ```
 
 5. **Run the development server:**
-   ```bash
-   ./venv/bin/python run.py
-   ```
+   * **Windows (PowerShell):**
+     ```powershell
+     .\venv\Scripts\python run.py
+     ```
+   * **Mac / Linux:**
+     ```bash
+     ./venv/bin/python run.py
+     ```
+   *(Note: The development server automatically creates your SQLite database and tables when you first run it!)*
+
+## Admin Setup
+To create an initial admin user to access secure areas of your app, run:
+* **Windows:** `.\venv\Scripts\flask create-admin`
+* **Mac/Linux:** `./venv/bin/flask create-admin`
 
 ## Running Tests
 To run the test suite:
-```bash
-./venv/bin/python -m pytest
-```
+* **Windows:** `.\venv\Scripts\python -m pytest`
+* **Mac/Linux:** `./venv/bin/python -m pytest`
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
