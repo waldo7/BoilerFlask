@@ -64,6 +64,13 @@ To create an initial admin user to access secure areas of your app, run:
 * **Windows:** `.\venv\Scripts\flask create-admin`
 * **Mac/Linux:** `./venv/bin/flask create-admin`
 
+## Customizing Your App
+To rebrand BoilerFlask and start building your own features, check out these key files:
+* **Project Name:** Search and replace "BoilerFlask" in `config.py` and the HTML templates (like `app/templates/base.html` and `app/templates/marketing_base.html`).
+* **Routes & Pages:** Add your new pages and logic in `app/main/routes.py`.
+* **Database Models:** Define your new database tables in the `app/models/` folder.
+* **Styling:** Add your custom CSS to `app/static/css/app.css`.
+
 ## Running Tests
 To run the test suite:
 * **Windows:** `.\venv\Scripts\python -m pytest`
